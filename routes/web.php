@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 class Task
@@ -56,24 +57,26 @@ $tasks = [
     ),
 ];
 
+
 Route::get('/', function () {
+    return redirect()->route('tasks.index');
+});
+
+Route::get('/tasks', function () use ($tasks) {
     return view('index',
         [
-//            "name" => "Anakin"
+            'tasks' => $tasks,
         ]);
-});
+})->name('tasks.index');
 
-Route::get('/hello', function () {
-    return 'Hello World';
-})->name('hello');
+Route::get('/tasks/{id}', function ($id) use ($tasks) {
+    $task = collect($tasks)->firstWhere('id', $id);
 
-ROute::get('/hallo', function () {
-    return redirect('/hello')->route('hello');
-});
+    if (!$task) abort(Response::HTTP_NOT_FOUND);
+    return view('show', ['task' => $task]);
 
-Route::get('/greet/{name}', function ($name) {
-    return 'Hello ' . $name;
-});
+})->name('tasks.show');
+
 
 Route::fallback(function () {
     return 'Where are you?';

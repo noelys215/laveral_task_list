@@ -1,8 +1,8 @@
-<h1>
-    Hello!
-</h1>
-<br>
-<div>
+@extends('layouts.app')
+
+@section('title', 'The list of tasks')
+
+@section('content')
     @forelse($tasks as $task)
         <ul>
             <li>
@@ -14,4 +14,4 @@
     @empty
         <li>There are no tasks!</li>
     @endforelse
-</div>
+@endsection
