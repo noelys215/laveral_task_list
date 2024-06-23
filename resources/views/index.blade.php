@@ -14,4 +14,10 @@
     @empty
         <li>There are no tasks!</li>
     @endforelse
+
+    @if($tasks->count())
+        <nav>
+            {{ $tasks->links() }}
+        </nav>
+    @endif
 @endsection
