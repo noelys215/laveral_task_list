@@ -13,8 +13,20 @@
             @apply rounded-md px-2 py-1 text-center font-medium shadow-sm ring-1 ring-slate-700/10 hover:bg-pink-50 text-slate-700
         }
 
+        label {
+            @apply block uppercase text-slate-700 mb-2
+        }
+
         .link {
             @apply font-medium text-gray-700 underline decoration-pink-500
+        }
+
+        .error {
+            @apply text-red-500 text-sm
+        }
+
+        input, textarea {
+            @apply shadow-sm appearance-none border w-full py-2 px-3 text-slate-700 leading-tight focus:outline-none
         }
     </style>
     {{-- blade-formatter-enable --}}
